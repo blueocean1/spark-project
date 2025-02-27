@@ -1,6 +1,7 @@
 import sys
 
 import lib.Utils
+from lib.ConfigLoader import get_conf, get_spark_conf
 from lib.logger import Log4j
 
 if __name__ == "__main__":
@@ -13,5 +14,11 @@ if __name__ == "__main__":
 
     spark = lib.Utils.get_spark_session(job_run_env)
     logger = Log4j(spark)
+
+    conf = get_conf(job_run_env)
+    spark_conf = get_spark_conf(job_run_env)
+
+    kafka_topic = conf["account.filter"]
+    print(kafka_topic)
 
     logger.info("Finished creating Spark Session")
