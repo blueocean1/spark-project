@@ -34,7 +34,13 @@ def get_contract(df):
                                  struct(lit("lgl_ttl_ln_2").alias("contractTitleLineType"),
                                         col("legal_title_2").alias("contractTitleLine")).alias("contractTitle"))
                             )
+
+    print(f"contract_title:\n {contract_title}")
+
     contract_title_nl = filter(contract_title, lambda x: ~isnull(x))
+
+    print(f"filtered contract_title:\n {contract_title_nl}")
+
     tax_identifier = struct(col("tax_id_type").alias("taxIdType"),
                             col("tax_id").alias("taxId"))
     return df.select("account_id", get_insert_operation(col("account_id"), "contractIdentifier"),
@@ -119,3 +125,4 @@ def apply_header(spark, df):
                                 ).alias("payload")
                          )
     return event_df
+
