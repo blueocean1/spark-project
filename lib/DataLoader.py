@@ -34,7 +34,7 @@ def get_party_schema():
                          StructField("account_id", StringType()),
                          StructField("party_id", StringType()),
                          StructField("relation_type", StringType()),
-                         StructField("relation_start_date", TimestampType())])
+                         StructField("relation_start_date", DateType())])
     return schema
 
 # DDL
